@@ -77,43 +77,53 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.StringTokenizer;
+import java.lang.Math;
 
 public class Estiagem {
-
     public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st;
+        InputStreamReader ir = new InputStreamReader(System.in);
+        BufferedReader in = new BufferedReader(ir);
 
-        int n;
-        int cidade = 0;
-        double mediaCompleta = 0;
-
-        while (true) {
-            System.out.println("n: ");
-            n = Integer.parseInt(br.readLine().trim());
-            if (n == 0) break;
-
-            cidade++;
-            System.out.println("Cidade# " + cidade + ":");
-            double totalConsumo = 0;
-            for (int i = 0; i < n; i++) {
-                st = new StringTokenizer(br.readLine());
-                int x = Integer.parseInt(st.nextToken());
-                int y = Integer.parseInt(st.nextToken());
-                int mediaDeConsumo = y / x;
-                System.out.println(x + "-" + mediaDeConsumo);
-                totalConsumo += mediaDeConsumo;
+        int T = 0;
+        while (in.ready()) {
+            int N = Integer.parseInt(in.readLine());
+            if (N == 0) {
+                break;
             }
 
-            double mediaCidade = totalConsumo / n;
-            mediaCompleta += mediaCidade;
-            System.out.println("Consumo médio: " + mediaCidade);
-        }
+            if (T > 0) {
+                System.out.println("");
+            }
 
-        if (cidade != 0) {
-            mediaCompleta /= cidade;
-            System.out.println("Consumo médio geral: " + mediaCompleta);
+            int totalX = 0, totalY = 0;
+            int[] consumos = new int[201];
+            for (int i = 0; i < N; ++i) {
+                String[] numeros = in.readLine().trim().split(" ");
+
+                int X = Integer.parseInt(numeros[0]);
+                int Y = Integer.parseInt(numeros[1]);
+
+                totalX += X;
+                totalY += Y;
+                consumos[Y / X] += X;
+            }
+
+            System.out.printf("Cidade# %d:\n", ++T);
+            boolean first = true;
+            for (int i = 0; i < 201; ++i) {
+                if (consumos[i] > 0) {
+                    if (first) {
+                        first = false;
+                    } else {
+                        System.out.print(" ");
+                    }
+
+                    System.out.printf("%d-%d", consumos[i], i);
+                }
+            }
+            System.out.println("");
+
+            System.out.printf("Consumo medio: %.2f m3.\n", Math.floor((100.0 * totalY) / totalX) / 100.0);
         }
     }
 }
