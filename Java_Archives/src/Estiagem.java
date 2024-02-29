@@ -83,7 +83,6 @@ public class Estiagem {
     public static void main(String[] args) throws IOException {
         InputStreamReader ir = new InputStreamReader(System.in);
         BufferedReader in = new BufferedReader(ir);
-
         int T = 0;
         while (in.ready()) {
             int N = Integer.parseInt(in.readLine());
