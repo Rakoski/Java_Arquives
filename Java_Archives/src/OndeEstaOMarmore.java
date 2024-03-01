@@ -9,7 +9,6 @@ public class OndeEstaOMarmore {
 
         while (inicio < fim) {
             int meio = (inicio + fim) / 2;
-
             if (V[meio] < valor) {
                 inicio = meio + 1;
             } else {

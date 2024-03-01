@@ -69,7 +69,7 @@ public class Criptografia {
                 char temp = texto[j];
                 texto[j] = texto[texto.length - 1 - j];
                 texto[texto.length - 1 - j] = temp;
-            }
+}
             for (int j = texto.length / 2; j < texto.length; ++j) {
                 texto[j] -= 1;
             }
