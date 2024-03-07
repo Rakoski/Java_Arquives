@@ -2,8 +2,6 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class Galopeira {
-
-
     public static int contaAsLetras(String palavra) {
         char[] arrayDeString = palavra.toCharArray();
         int numero = 0;
